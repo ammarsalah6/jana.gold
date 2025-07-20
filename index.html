@@ -1,0 +1,494 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JANA GOLD - منيو الحلاوة</title>
+  <style>
+    body {
+  font-family: 'Times New Roman', sans-serif;
+  margin: 0;
+  background-image: url('bakgrun.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+
+    header {
+      background-color: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 15px;
+      font-size: 25px;
+      font-weight: bold;
+      border-bottom: 3px solid gold;
+      color: #F2E80F;
+      flex-wrap: wrap;
+    }
+
+    header img {
+      height: 100px;
+    }
+
+    .toggle-btn {
+      background-color: gold;
+      color: black;
+      border: none;
+      padding: 8px 12px;
+      font-size: 30px;
+      cursor: pointer;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .sidebar {
+      width: 220px;
+      background-color: rgba(0, 0, 0, 0.8);
+      padding: 15px;
+      min-height: 100vh;
+      transition: transform 0.3s ease;
+    }
+
+    .sidebar.hidden {
+      transform: translateX(100%);
+      position: absolute;
+      right: 0;
+      top: 80px;
+      z-index: 999;
+    }
+
+    .sidebar button {
+      display: block;
+      width: 100%;
+      margin: 8px 0;
+      padding: 10px;
+      background-color: gold;
+      color: #159509;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    .content {
+      flex-grow: 1;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.1);
+      min-height: 100vh;
+    }
+
+    .content h2 {
+      font-size: 20px;
+      margin-bottom: 15px;
+    }
+
+    .table-container {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      background-color: rgba(0, 0, 0, 0.7);
+      min-width: 400px;
+    }
+
+    th, td {
+      border: 1px solid gold;
+      padding: 10px;
+      text-align: center;
+      color: white;
+      font-weight: 600;
+      font-weight: bold
+    }
+
+    th {
+      background-color: gold;
+      color: black;
+    }
+
+    .brand-text {
+      color: gold;
+      font-size: 18px;
+      margin-right: 10px;
+    }
+
+    #searchBox {
+      margin-bottom: 10px;
+      padding: 8px;
+      width: 100%;
+      max-width: 300px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .menu-image {
+      max-width: 250px;
+      margin-bottom: 15px;
+      border: 3px solid gold;
+      border-radius: 8px;
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+#instruction {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+}
+
+@media (max-width: 600px) {
+  #instruction {
+    font-size: 15px;
+  }
+}	
+
+      .sidebar {
+        width: 100%;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        transform: translateX(100%);
+        z-index: 1000;
+      }
+
+      .sidebar.hidden {
+        transform: translateX(0%);
+      }
+
+      .content {
+        padding: 15px;
+      }
+
+      .toggle-btn {
+        font-size: 16px;
+        padding: 6px 10px;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .menu-image {
+        max-width: 100%;
+      }
+#instruction {
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    /* لما تكون الشاشة أصغر من 600px (يعني موبايل) */
+    @media (max-width: 600px) {
+      #instruction {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <audio id="clickSound" src="-n44Fhw7Kgo.mp3"></audio>
+
+  <header>
+    <div>
+      <button class="toggle-btn" onclick="playSound(); toggleSidebar()">☰ القائمة</button>
+      <span class="site-title">Jana Golg "الحلاوة حلاوتنا"</span>
+    </div>
+    <img src="2130.png" alt="JANA GOLD Logo" />
+  </header>
+
+  <div class="container">
+    <div class="sidebar hidden" id="sidebar">
+      <button onclick="playSound(); showMenu('madwar')">مدور</button>
+      <button onclick="playSound(); showMenu('sikkina')">السكينة</button>
+      <button onclick="playSound(); showMenu('furn')">الفرن</button>
+      <button onclick="playSound(); showMenu('qeshta')">القشطة</button>
+      <button onclick="playSound(); showMenu('malban')">الملبن</button>
+      <button onclick="playSound(); showMenu('sandawetsh')">سندوتش & لديدة</button>
+      <button onclick="playSound(); showMenu('borma')">يورمة & فخفخينا</button>
+      <button onclick="playSound(); showMenu('mraba')">مربى</button>
+      <button onclick="playSound(); showMenu('noga')">النوجا</button>
+      <button onclick="playSound(); showMenu('moabaa')">المعبأ</button>
+    </div>
+
+    <div class="content" id="menuContent">
+      <h2>اختر تصنيف من القائمة لعرض المنتجات</h2>
+    </div>
+  </div>
+
+  <script>
+    const sidebar = document.getElementById("sidebar");
+    const clickSound = document.getElementById("clickSound");
+
+    function toggleSidebar() {
+      sidebar.classList.toggle("hidden");
+    }
+
+    function playSound() {
+      clickSound.currentTime = 0;
+      clickSound.play();
+    }
+
+    const menus = {
+      madwar: [
+        { code: "1", name: 'قرص حمص ميني', unit: 'كيلو', weight: '10 كجم', price: '0 جنيه' },
+        { code: "4", name: 'قرص حمص كبير', unit: 'كيلو', weight: '10 كجم', price: '0 جنيه' },
+        { code: "2", name: 'قرص فول ميني', unit: 'كيلو', weight: '10 كجم', price: '0 جنيه' },
+        { code: "5", name: 'قرص فول كبير', unit: 'كيلو', weight: '10 كجم', price: '0 جنيه' },
+        { code: "3", name: 'قرص سمسم ميني', unit: 'كيلو', weight: '10 كجم', price: '0 جنيه' },
+        { code: "6", name: 'قرص سمسم كبير', unit: 'كيلو', weight: '10 كجم', price: '0 جنيه' },
+        { code: "13", name: 'قرص علف مدور مخصوص', unit: 'قرص', weight: '60 قطعه', price: '0 جنيه' },
+        { code: "103", name: 'قرص مخصوص مكسرات ميني', unit: 'قرص', weight: '25 قطعه', price: '0 جنيه' },
+        { code: "104", name: 'قرص مخصوص مكسرات كبير', unit: 'كيلو', weight: '10 كجم', price: '0 جنيه' },
+        { code: "97", name: 'قرص فسق 50 جم', unit: 'كيلو', weight: '4 كجم', price: '0 جنيه' },
+        { code: "94", name: 'قرص بندق 50 جم', unit: 'كيلو', weight: '4 كجم', price: '0 جنيه' },
+        { code: "95", name: 'قرص لوز 50 جم', unit: 'كيلو', weight: '4 كجم', price: '0 جنيه' },
+        { code: "96", name: 'قرص كاجو 50 جم', unit: 'كيلو', weight: '4 كجم', price: '0 جنيه' }
+      ],
+      sikkina: [
+        { code: "7", name: 'فول سكينة لوكس', unit: 'كيلو', weight: '7.5 كجم', price: '0 جنيه' },
+        { code: "9", name: 'حمص سكينة لوكس', unit: 'كيلو', weight: '7.5 كجم', price: '0 جنيه' },
+        { code: "8", name: 'سمسم سكينة لوكس', unit: 'كيلو', weight: '7.5 كجم', price: '0 جنيه' },
+        { code: "10", name: 'فول سكينة اسبيشيال', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "12", name: 'حمص سكينة اسبشيال', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "11", name: 'سمسم سكينة اسبشيال', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "126", name: 'فول سكينة كريمة', unit: 'كيلو', weight: '6 كجم', price: '0 جنيه' },
+        { code: "126*", name: 'فول سكينة شيكولاتة', unit: 'كيلو', weight: '6 كجم', price: '0 جنيه' },
+        { code: "128", name: 'حمص سكينة كريمة ', unit: 'كيلو', weight: '6 كجم', price: '0 جنيه' },
+        { code: "128*", name: 'حمص سكينة شيكولاتة', unit: 'كيلو', weight: '6 كجم', price: '0 جنيه' },
+        { code: "127", name: 'سمسم سكينة كريمة', unit: 'كيلو', weight: '6 كجم', price: '0 جنيه' },
+        { code: "127*", name: 'سمسم سكينة شيكولاتة', unit: 'كيلو', weight: '6 كجم', price: '0 جنيه' },
+        { code: "99", name: 'شرائح بندق ميني ', unit: 'كيلو', weight: '4 كجم', price: '0 جنيه' },
+        { code: "100", name: 'شرائح لوز ميني', unit: 'كيلو', weight: '4 كجم', price: '0 جنيه' },
+        { code: "101", name: 'شرائح فسدق ميني', unit: 'كيلو', weight: '4 كجم', price: '0 جنيه' },
+        { code: "102", name: 'شرائح كاجو ميني', unit: 'كيلو', weight: '4 كجم', price: '0 جنيه' }
+      ],
+      furn: [
+        { code: "52", name: 'بسيمة سادة', unit: 'كيلو', weight: '6 كجم', price: '0 جنيه' },
+        { code: "53", name: 'بسيمة بالمكسرات ', unit: 'كيلو', weight: '6 كجم', price: '0 جنيه' },
+        { code: "65*", name: 'سندوتش جوز هند فرن سادة', unit: 'كيلو', weight: '6 كجم', price: '0 جنيه' },
+        { code: "65", name: 'سندوتش جوز هند فرن بالمكسرات', unit: 'كيلو', weight: '6 كجم', price: '0 جنيه' },
+        { code: "115", name: 'شكلمة لوكس', unit: 'كيلو', weight: '4 كجم', price: '0 جنيه' },
+        { code: "116", name: 'شكلمة اسبشيال  ', unit: 'كيلو', weight: '4 كجم', price: '0 جنيه' },
+        { code: "117", name: 'شكلمة كريمة', unit: 'كيلو', weight: '4 كجم', price: '0 جنيه' },
+        { code: "118", name: 'شكلمة شيكولاتة', unit: 'كيلو', weight: '4 كجم', price: '0 جنيه' }
+      ],
+      qeshta: [
+        { code: "45", name: 'قشطة سادة', unit: 'كيلو', weight: '4 كجم', price: '0 جنيه' },
+        { code: "47", name: 'قشطة زبيب', unit: 'كيلو', weight: '4 كجم', price: '0 جنيه' },
+        { code: "48", name: 'قشطة فول', unit: 'كيلو', weight: '4 كجم', price: '0 جنيه' },
+        { code: "49", name: 'قشطة بندق', unit: 'كيلو', weight: '4 كجم', price: '0 جنيه' },
+        { code: "50", name: 'قشطة لوز', unit: 'كيلو', weight: '4 كجم', price: '0 جنيه' },
+        { code: "51", name: 'قشطة فسدق', unit: 'كيلو', weight: '4 كجم', price: '0 جنيه' },
+        { code: "23", name: 'حندوقة', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' }
+      ],
+      malban: [
+        { code: "15", name: 'ملبن ساده', unit: 'كيلو', weight: '10 كجم', price: '0 جنيه' },
+        { code: "16", name: 'ملبن جيلي', unit: 'كيلو', weight: '10 كجم', price: '0 جنيه' },
+        { code: "33", name: 'ملبن حبل وش واحد مغلف', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "34", name: 'ملبن وش واحد سايب', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "31", name: 'ملبن وشين مغلف', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "32", name: 'ملبن وشين سايب', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "28", name: 'ملبن رش فسدق', unit: 'كيلو', weight: '6 كجم', price: '0 جنيه' },
+        { code: "29", name: 'ملبن رش كاجو', unit: 'كيلو', weight: '6 كجم', price: '0 جنيه' },
+        { code: "26", name: 'ملبن رش بندق', unit: 'كيلو', weight: '6 كجم', price: '0 جنيه' },
+        { code: "27", name: 'ملبن رش لوز', unit: 'كيلو', weight: '6 كجم', price: '0 جنيه' },
+        { code: "21", name: 'ملبن رش زبيب', unit: 'كيلو', weight: '6 كجم', price: '0 جنيه' },
+        { code: "22", name: 'ملبن شيكوبن', unit: 'كيلو', weight: '6 كجم', price: '0 جنيه' },
+        { code: "25", name: 'ملبن كورن فليكس', unit: 'كيلو', weight: '6 كجم', price: '0 جنيه' },
+        { code: "19", name: 'ملبن رش فول', unit: 'كيلو', weight: '6 كجم', price: '0 جنيه' },
+        { code: "20", name: 'ملبن رش فارمسيل', unit: 'كيلو', weight: '6 كجم', price: '0 جنيه' },
+        { code: "200", name: 'ملبن رش سمسم', unit: 'كيلو', weight: '6 كجم', price: '0 جنيه' },
+        { code: "24", name: 'ملبن رش كرسبي', unit: 'كيلو', weight: '6 كجم', price: '0 جنيه' },
+        { code: "18", name: 'دومية بندق', unit: 'كيلو', weight: '10 كجم', price: '0 جنيه' },
+        { code: "17", name: 'دومية فول', unit: 'كيلو', weight: '10 كجم', price: '0 جنيه' },
+        { code: "35", name: 'ملبن حبل بالمارشيملو', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "36", name: 'ملبن حبل بالمارشيملو وفسدق', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' }
+      ],
+      sandawetsh: [
+        { code: "61", name: 'سندوتش جوز هند فول قمر الدين', unit: 'كيلو', weight: '6 كجم', price: '0 جنيه' },
+        { code: "62", name: 'سندوتش جوز هند بندق قمر الدين', unit: 'كيلو', weight: '6 كجم', price: '0 جنيه' },
+        { code: "64", name: 'سندوتش جوز هند فسدق قمر الدين', unit: 'كيلو', weight: '6 كجم', price: '0 جنيه' },
+        { code: "81", name: 'سندوتش بسكويت جيلي', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "66", name: 'سندوتش جوز هند فول', unit: 'كيلو', weight: '6 كجم', price: '0 جنيه' },
+        { code: "67", name: 'سندوتش جوز هند دومية', unit: 'كيلو', weight: '6 كجم', price: '0 جنيه' },
+        { code: "68", name: 'سندوتش جوز هند سمسم', unit: 'كيلو', weight: '6 كجم', price: '0 جنيه' },
+        { code: "69", name: 'سندوتش سمسم سوداني', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "71", name: 'شرائح لديدة', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "71*", name: 'شرائح حمام', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "71**", name: 'شرائح لديدة وحمام', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "136*", name: 'لديدة 100 جم بالمكسرات', unit: 'قطعة', weight: '40 قطعه', price: '0 جنيه' },
+        { code: "136", name: 'حمام 100 جم بالمسكرات', unit: 'قطعة', weight: '40 قطعه', price: '0 جنيه' },
+        { code: "73", name: 'لديدة باكت 50 جم', unit: 'قطعة', weight: '60 قطعه', price: '0 جنيه' },
+        { code: "73*", name: 'حمام باكت 50 جم', unit: 'قطعة', weight: '60 قطعه', price: '0 جنيه' },
+        { code: "130", name: 'لديدة كومبو 400 جم', unit: 'قطعة', weight: '8 قطعه', price: '0 جنيه' }
+      ],
+      borma: [
+        { code: "901", name: 'فخفخينا جوز هند زبيب', unit: 'كيلو', weight: '6 كجم', price: '0 جنيه' },
+        { code: "902", name: 'فخفخينا جوز هند فول', unit: 'كيلو', weight: '6 كجم', price: '0 جنيه' },
+        { code: "902*", name: 'فخفخينا جوز هند سمسم', unit: 'كيلو', weight: '6 كجم', price: '0 جنيه' },
+        { code: "85", name: 'فخفخينا لوز', unit: 'كيلو', weight: '6 كجم', price: '0 جنيه' },
+        { code: "86", name: 'فخفخينا بندق', unit: 'كيلو', weight: '6 كجم', price: '0 جنيه' },
+        { code: "87", name: 'بورمة جوز هند زبيب', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "88", name: 'بورمة جوز هند فول', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "88*", name: 'بورمة جوز هند فول عسلي', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "88**", name: 'بورمة جوز هند فول اصفر', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "88***", name: 'بورمة جوز هند بطيخ', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "89", name: 'بورمة جوز هند دومية', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "91", name: 'بورمة جوز هند سمسم', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "82", name: 'بورمة واو قمر الدين', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "83", name: 'بورمة واو عجوة', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "90", name: 'بورمة جوز هند مروحة', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "92", name: 'بورمة سمسم سوداني', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "93", name: 'بورمة عجوة سمسم', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' }
+      ],
+      mraba: [
+        { code: "56", name: 'مربي فسدق نمر 1', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "121", name: 'مربي فسدق مخصوص', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "58", name: 'مربي بندق نمر1', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "123", name: 'مربي بندق مخصوص', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "57", name: 'مربي لوز نمر 1', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "122", name: 'مربي لوز مخصوص', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "54", name: 'مربي زبيب نمر 1', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "119", name: 'مربي زبيب مخصوص', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "55", name: 'مربي فول نمر 1', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "120", name: 'مربي فول مخصوص', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "59", name: 'مربي فواكة', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' }
+      ],
+      noga: [
+        { code: "111", name: 'نوجا فول ميني', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "112", name: 'نوجا رش فسدق ميني', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "113", name: 'نوجا رش بندق ميني', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "114", name: 'منوجا رش اوز ميني', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "38", name: 'نوجا رش فول مسطرة', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "40", name: 'نواجا رش فسدق مسطرة', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "41", name: 'نواجا رش لوز مسطرة', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "42", name: 'نواجا رش بندق مسطرة', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "272", name: 'دمية سوري فراولة', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "272*", name: 'دومية سوري فول عسلي', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "282", name: 'دومية بندق سوري عسلي', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "2004", name: 'ديناميت لوز', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "2005", name: 'ديناميت بندق', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "2006", name: 'ديناميت فسدق', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "2007", name: 'نوجا ملبن فول عسلي', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "2007*", name: 'نوجا ملبن فول اخضر', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "2007**", name: 'نوجا ملبن فول مانجو', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "2007***", name: 'نوجا ملبن شيكولاتة', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "2008", name: 'نوجا ملبن سمسم', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "2011", name: 'نوجا دومية فول', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "2010", name: 'نوجا كوكتيل فراولة', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "2010*", name: 'نوجا كوكتيل تفاح', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "2010**", name: 'نوجا كوكتيل موز', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "2010***", name: 'نوجا كوكتيل توت ازرق', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "2010****", name: 'نوجا كوكتيل توت برتقال', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "2009", name: 'نوجا سوري فسدق', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "2012", name: 'راحة اكسترا فول', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "2013", name: 'راحة اكسترا كوكتيل', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "2014", name: 'راحة اكسترا سمسم', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "2015", name: 'راحة اكسترا فول سمسم', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "3002", name: 'لبناني شطرنج احمر', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "3002*", name: 'لبناني شطرنج ابيض', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "3005", name: 'لبناني سمسم قمر الدين', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "3006", name: 'لبناني فول قمر الدين', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "3007", name: 'لبناني كرسبي قمر الدين', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "3009", name: 'لبناني ملبن عسلي قمر الدين', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "3009*", name: 'لبناني ملبن شيكولاتة قمر الدين', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "3010", name: 'لبناني دومية قمر الدين', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "3012", name: 'لبناني ملبن سمسم قمر الدين', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "3015", name: 'برجر سمسم ميني', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "3016", name: 'لبناني جوز هند شيكولاتة', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' },
+        { code: "3017", name: 'لبناني بورمة سمسم', unit: 'كيلو', weight: '5 كجم', price: '0 جنيه' }
+      ],
+      moabaa: [
+        { code: "105", name: 'حلاوة 1 ك لوكس ', unit: 'علبة', weight: '12 علبة', price: '0 جنيه' },
+        { code: "105*", name: 'حلاوة 1.5 ك لوكس', unit: 'علبة', weight: '12 علبة', price: '0 جنيه' },
+        { code: "106", name: 'حلاوة 2 ك لوكس', unit: 'علبة', weight: '6 علبة', price: '0 جنيه' },
+        { code: "106*", name: 'حلاوة 2.5 ك لوكس', unit: 'علبة', weight: '6 علبة', price: '0 جنيه' },
+        { code: "107", name: 'حلاوة 1 ك مستطيل', unit: 'علبة', weight: '12 علبة', price: '0 جنيه' },
+        { code: "107**", name: 'حلاوة 2 ك مستطيل', unit: 'علبة', weight: '6 علبة', price: '0 جنيه' },
+        { code: "107**", name: 'حلاوة 3 ك مستطيل', unit: 'علبة', weight: '6 علبة', price: '0 جنيه' },
+        { code: "108", name: 'حلاوة 1 ك اسبيشيال', unit: 'علبة', weight: '6 علبة', price: '0 جنيه' },
+        { code: "108*", name: 'حلاوة 2 ك اسبيشيال', unit: 'علبة', weight: '6 علبة', price: '0 جنيه' },
+        { code: "109", name: 'حلاوة 3 ك اسبيشيال', unit: 'علبة', weight: '6 علبة', price: '0 جنيه' },
+        { code: "109*", name: 'حلاوة 3.5 ك اسبيشيال', unit: 'علبة', weight: '6 علبة', price: '0 جنيه' },
+        { code: "125", name: 'VIP حلاوة 3 ك ', unit: 'علبة', weight: '6 علبة', price: '0 جنيه' }
+      ],
+    };
+
+    const categoryImages = {
+      madwar: "madwar.jpeg",
+      sikkina: "sikkina.jpeg",
+      furn: "furn.png",
+      qeshta: "qeshta.png",
+      malban: "malban.JPEG",
+      sandawetsh: "sandwich.JPEG",
+      borma: "borma.jpeg",
+      mraba: "mraba.JPEG",
+      noga: "noga.JPEG",
+      moabaa: "moabaa.PNG"
+    };
+
+    function showMenu(type) {
+      const items = menus[type];
+      if (!items) {
+        document.getElementById('menuContent').innerHTML = '<p>لا توجد بيانات متاحة لهذا التصنيف.</p>';
+        return;
+      }
+
+      const imgSrc = categoryImages[type] || '';
+
+      let html = `
+  <img src="${imgSrc}" alt="${type}" class="menu-image" />
+  <input type="text" id="searchBox" placeholder="ابحث عن منتج..." onkeyup="filterTable()" />
+  <div class="table-container">
+    <table id="productTable">
+      <tr><th>كود</th><th>اسم الصنف</th><th>الوحدة</th><th>العبوة</th><th>السعر</th></tr>
+`;
+
+items.forEach(item => {
+  html += `<tr><td>${item.code}</td><td>${item.name}</td><td>${item.unit}</td><td>${item.weight}</td><td>${item.price}</td></tr>`;
+});
+
+html += `
+    </table>
+  </div>
+`;
+document.getElementById('menuContent').innerHTML = html;
+    }
+
+    function filterTable() {
+      const input = document.getElementById("searchBox");
+      const filter = input.value.toUpperCase();
+      const table = document.getElementById("productTable");
+      const tr = table.getElementsByTagName("tr");
+
+      for (let i = 1; i < tr.length; i++) {
+        const td = tr[i].getElementsByTagName("td")[1]; // البحث باسم الصنف
+        if (td) {
+          const txtValue = td.textContent || td.innerText;
+          tr[i].style.display = txtValue.toUpperCase().indexOf(filter) > -1 ? "" : "none";
+        }
+      }
+    }
+  </script>
+
+</body>
+</html> 
